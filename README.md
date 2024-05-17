@@ -1,49 +1,47 @@
-# Drone Gotify Plugin
-A very simple [Drone](https://www.drone.io) plugin to send a notification to [Gotify](https://gotify.net).
+# Woodpecker Gotify Plugin
+A very simple [Woodpecker](https://woodpecker-ci.org) plugin to send a notification to [Gotify](https://gotify.net).
 
 ## Notes
-I recommend having different steps for success/failure, as the plugin does not seem to be aware of the previous step, so DRONE_BUILD_STATUS seems to always be "success"?
+I recommend having different steps for success/failure, as the plugin does not seem to be aware of the previous step, so CI_PIPELINE_STATUS seems to always be "success"?
 
 ## Usage
 ```yaml
 ---
-kind: pipeline
-type: kubernetes
-name: Patching
-
 steps:
 - name: Some Script
   image: some/plugin
+
 - name: Gotify Success Notification
-  image:  imoshtokill/drone-gotify-plugin:v1
+  image: coralhl/woodpecker-gotify-plugin
   settings:
     token:
       from_secret: gotify_token
     gotify_url: 'https://gotify.myawesomedomain.com'
     # title is optional, defaults to:
-    # ${DRONE_REPO_NAME}:${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}
-    title: Some title here
+    # ${CI_REPO_NAME} ${CI_PIPELINE_STATUS}
+    title: Notification from my Pipeline
     # priority is optional, defaults to 5
     priority: 9
     # message is optional, defaults to:
-    #Build ${DRONE_BUILD_NUMBER} of ${DRONE_REPO}: (${DRONE_COMMIT_MESSAGE}): ${DRONE_BUILD_LINK}
-    message: Some message
+    #Build ${CI_REPO}: (${CI_COMMIT_MESSAGE})
+    message: Success!
   when:
-    status: [ success ]
+    - status: [ success ]
+
 - name: Gotify Failure Notification
-  image:  imoshtokill/drone-gotify-plugin:v1
+  image: coralhl/woodpecker-gotify-plugin
   settings:
     token:
       from_secret: gotify_token
     gotify_url: 'https://gotify.myawesomedomain.com'
     # title is optional, defaults to:
-    # ${DRONE_REPO_NAME}:${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}
-    title: Ruh Row!
+    # ${CI_REPO_NAME} ${CI_PIPELINE_STATUS}
+    title: Notification from my Pipeline
     # priority is optional, defaults to 5
     priority: 9
     # message is optional, defaults to:
-    #Build ${DRONE_BUILD_NUMBER} of ${DRONE_REPO}: (${DRONE_COMMIT_MESSAGE}): ${DRONE_BUILD_LINK}
-    message: We messed up!
+    #Build {CI_REPO}: (${CI_COMMIT_MESSAGE})
+    message: Failure!
   when:
-    status: [ failure ]
+    - status: [ failure ]
 ```
