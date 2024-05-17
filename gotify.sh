@@ -15,6 +15,9 @@ MESSAGE="${PLUGIN_MESSAGE:-${DEFAULT_MESSAGE}}"
 ESCAPED_MESSAGE=$(echo "${MESSAGE}" | sed ':a;N;$!ba;s/\n/\\n/g')
 ESCAPED_TITLE=$(echo "${PLUGIN_TITLE:-${DEFAULT_TITLE}}" | sed ':a;N;$!ba;s/\n/\\n/g')
 
+echo $ESCAPED_TITLE
+echo $ESCAPED_MESSAGE
+
 curl \
     -q -s \
     -H "Content-Type: application/json" \
