@@ -4,6 +4,8 @@ A very simple [Woodpecker](https://woodpecker-ci.org) plugin to send a notificat
 ## Notes
 I recommend having different steps for success/failure, as the plugin does not seem to be aware of the previous step, so CI_PIPELINE_STATUS seems to always be "success"?
 
+You can use Woodpecker [variables](https://woodpecker-ci.org/docs/usage/environment) in `message`
+
 ## Usage
 ```yaml
 ---
