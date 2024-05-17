@@ -13,7 +13,7 @@ DEFAULT_MESSAGE="Build ${CI_REPO} (${CI_COMMIT_MESSAGE})"
 
 MESSAGE="${PLUGIN_MESSAGE:-${DEFAULT_MESSAGE}}"
 ESCAPED_MESSAGE=$(echo "${MESSAGE}" | sed ':a;N;$!ba;s/\n/\\n/g')
-ESCAPED_MESSAGE=$(echo "${ESCAPED_MESSAGE}" | sed ':a;N;$!ba;s/\t/\\t/g')
+ESCAPED_MESSAGE=$(echo "${ESCAPED_MESSAGE}" | sed ':a;N;$!ba;s/\t/ /g')
 ESCAPED_TITLE=$(echo "${PLUGIN_TITLE:-${DEFAULT_TITLE}}" | sed ':a;N;$!ba;s/\n/\\n/g')
 
 echo $ESCAPED_TITLE
