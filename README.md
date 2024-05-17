@@ -23,7 +23,7 @@ steps:
     # priority is optional, defaults to 5
     priority: 9
     # message is optional, defaults to:
-    #Build ${CI_REPO}: (${CI_COMMIT_MESSAGE})
+    #Build ${CI_REPO} (${CI_COMMIT_MESSAGE})
     message: Success!
   when:
     - status: [ success ]
@@ -40,7 +40,7 @@ steps:
     # priority is optional, defaults to 5
     priority: 9
     # message is optional, defaults to:
-    #Build {CI_REPO}: (${CI_COMMIT_MESSAGE})
+    #Build {CI_REPO} (${CI_COMMIT_MESSAGE})
     message: Failure!
   when:
     - status: [ failure ]
