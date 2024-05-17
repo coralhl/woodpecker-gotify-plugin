@@ -17,13 +17,11 @@ steps:
     token:
       from_secret: gotify_token
     gotify_url: 'https://gotify.myawesomedomain.com'
-    # title is optional, defaults to:
-    # ${CI_REPO_NAME} ${CI_PIPELINE_STATUS}
+    # title is optional
     title: Notification from my Pipeline
     # priority is optional, defaults to 5
     priority: 9
-    # message is optional, defaults to:
-    #Build ${CI_REPO} (${CI_COMMIT_MESSAGE})
+    # message is optional
     message: Success!
   when:
     - status: [ success ]
@@ -34,13 +32,11 @@ steps:
     token:
       from_secret: gotify_token
     gotify_url: 'https://gotify.myawesomedomain.com'
-    # title is optional, defaults to:
-    # ${CI_REPO_NAME} ${CI_PIPELINE_STATUS}
+    # title is optional
     title: Notification from my Pipeline
     # priority is optional, defaults to 5
     priority: 9
-    # message is optional, defaults to:
-    #Build {CI_REPO} (${CI_COMMIT_MESSAGE})
+    # message is optional
     message: Failure!
   when:
     - status: [ failure ]
