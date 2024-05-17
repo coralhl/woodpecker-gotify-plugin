@@ -1,0 +1,16 @@
+---
+steps:
+- name: "Build & Push -> Docker Hub"
+  image: plugins/docker
+  environment:
+    PLUGIN_AUTO_LABEL: false
+  settings:
+    username: 
+      from_secret: dockerhub_username
+    password:
+      from_secret: dockerhub_password
+    context: .
+    dockerfile: Dockerfile
+    repo: coralhl/woodpecker-gotify-plugin
+    tags:
+    - latest
